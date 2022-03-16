@@ -3,6 +3,7 @@ RUN apk --no-cache add git
 WORKDIR /calcom
 RUN git clone --recursive https://github.com/michael-dm/calcom-docker.git . 
 COPY calendso/apps/web/package.json calendso/apps/web/yarn.lock ./
+COPY calendso/packages/prisma prisma
 # RUN yarn install --frozen-lockfile
 RUN yarn install
 
@@ -29,6 +30,7 @@ WORKDIR /calcom
 ENV NODE_ENV production
 
 COPY --from=builder /calcom/apps/web/node_modules ./node_modules
+COPY --from=builder /calcom/apps/web/prisma ./prisma
 COPY --from=builder /calcom/apps/web/scripts ./scripts
 COPY --from=builder /calcom/apps/web/next.config.js ./
 COPY --from=builder /calcom/apps/web/next-i18next.config.js ./
