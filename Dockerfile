@@ -1,7 +1,7 @@
 FROM node:14-alpine as deps
 RUN apk --no-cache add git
-RUN git clone --recursive https://github.com/michael-dm/calcom-docker.git
 WORKDIR /calcom
+RUN git clone --recursive https://github.com/michael-dm/calcom-docker.git
 COPY calendso/apps/web/package.json calendso/apps/web/yarn.lock ./
 COPY calendso/apps/web/prisma prisma
 # RUN yarn install --frozen-lockfile
