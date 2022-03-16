@@ -1,4 +1,5 @@
-FROM node:14 as deps
+FROM node:14-alpine as deps
+RUN apk --no-cache add git
 RUN git submodule update --init --recursive
 WORKDIR /calcom
 COPY calendso/apps/web/package.json calendso/apps/web/yarn.lock ./
