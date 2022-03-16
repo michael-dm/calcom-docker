@@ -1,5 +1,5 @@
 FROM node:14 as deps
-
+RUN git submodule update --init --recursive
 WORKDIR /calcom
 COPY calendso/apps/web/package.json calendso/apps/web/yarn.lock ./
 COPY calendso/apps/web/prisma prisma
